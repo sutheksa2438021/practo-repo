@@ -4,7 +4,7 @@ import { HomePage } from '../pages/Homepage';
 import { HospitalDetailsPage } from '../pages/Hospital-details';
 import { LabTestPage } from '../pages/Labtests';
 import { CorporateWellnessValidDataPage } from '../pages/cooperatewellness';
-import { CorporateWellnessInvalidDataPage  } from '../pages/invalidwellness';
+import { CooperateWellnessInvalidDataPage  } from '../pages/invalidwellness';
 
 export class PageFixture {
   readonly page: Page;
@@ -13,7 +13,7 @@ export class PageFixture {
   readonly hospitaldetails: HospitalDetailsPage;
   readonly labtest: LabTestPage;
   readonly cooperateWellnessPage: CorporateWellnessValidDataPage;
-  readonly invalidWellnessPage: CorporateWellnessInvalidDataPage ;
+  readonly invalidWellnessPage: CooperateWellnessInvalidDataPage ;
 
   constructor(page: Page) {
     this.page = page;
@@ -21,8 +21,8 @@ export class PageFixture {
     this.homepage = new HomePage(page);
     this.hospitaldetails = new HospitalDetailsPage(page);
     this.labtest = new LabTestPage(page);
-    this.cooperateWellnessPage = new  CorporateWellnessValidDataPage(page);
-    this.invalidWellnessPage = new CorporateWellnessInvalidDataPage(page);
+    //this.cooperateWellnessPage = new  CorporateWellnessValidDataPage(page);
+    this.invalidWellnessPage = new CooperateWellnessInvalidDataPage(page);
   }
 
   get base(): Page {

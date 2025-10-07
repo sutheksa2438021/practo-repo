@@ -1,54 +1,32 @@
-import { test, expect, Page } from '@playwright/test';
+import { chromium, test, expect } from '@playwright/test';
+import { CooperateWellnessInvalidDataPage } from '../pages/invalidwellness';
+import { readCSVData } from '../utils/readCSV';
 
-import { CorporateWellnessInvalidDataPage  } from '../pages/invalidwellness'; 
+type WellnessFormData = {
+  Name: string;
+  OrganizationName: string;
+  ContactNumber: string;
+  Email: string;
+  OrganizationSize: string;
+  InterestedIn: string;
+};
 
- 
+const invalidData = readCSVData('invalidtestdata.csv') as WellnessFormData[];
 
+for (const data of invalidData) {
+  test(`Form should not submit with invalid data: ${data.Name}`, async () => {
+    // Launch Chromium with automation detection disabled
+    const browser = await chromium.launch({
+      headless: false,
+      args: ['--disable-blink-features=AutomationControlled']
+    });
 
-let corporateWellnessPage: CorporateWellnessInvalidDataPage;
- 
- 
-test.describe('Corporate Wellness Invalid Form Tests', () => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
 
+    const wellnessPage = new CooperateWellnessInvalidDataPage(page);
 
-  test.beforeEach(async ({ page }) => {
-
-    corporateWellnessPage = new CorporateWellnessInvalidDataPage(page);
-
-    await corporateWellnessPage.navigateToWellnessPage();
-
-  });
-
-  test('should disable the submit button with invalid/empty form data', async () => {
-
-    await corporateWellnessPage.fillInvalidForm();
-
-
-    const isEnabled = await corporateWellnessPage.isSubmitButtonEnabled();
-
-    
-
-
-    // await expect(corporateWellnessPage.page.locator('.error-message-for-name')).toBeVisible(); 
-
-  });
- 
- 
- 
-  test('should scroll to the FAQ section and click the link', async () => {
-
-    //const page = corporateWellnessPage.page; // Access the page object from the POM instance
-
-
-    await corporateWellnessPage.scrollToFAQSection();
-
-
-    await corporateWellnessPage.clickFAQ();
-
-
-   // await expect(page).toHaveURL(/#faq/);
-
-  });
-
-});
- 
+    await wellnessPage.navigateToForm();
+    await wellnessPage.fillInvalidFormData(data);
+ })
+ };
