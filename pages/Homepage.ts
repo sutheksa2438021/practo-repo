@@ -1,19 +1,32 @@
 import { Page } from '@playwright/test';
-
-export class HomePage {
-  constructor(private page: Page) {}
-
-  async navigateToHome() {
-    await this.page.goto('https://www.practo.com/');
+import locators from '../locators/locators.json';
+ 
+export class Homepage {
+  readonly page: Page;
+ 
+  constructor(page: Page) {
+    this.page = page;
   }
-
-  async selectCity(city: string) {
-    await this.page.fill("input[placeholder='Search location']", city);
+ 
+  async navigate() {
+    await this.page.goto('https://www.practo.com', { waitUntil: 'domcontentloaded' });
+  }
+ 
+  async setLocation(city: string) {
+    const locationInput = this.page.locator(locators.HomePage.locationInput);
+    await locationInput.click();
+    await locationInput.fill(city);
     await this.page.keyboard.press('Enter');
+    await this.page.waitForTimeout(2000);
   }
-
-  async clickSearchHospitals() {
+ 
+  async clickSearchHospitalsFooter() {
     await this.page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await this.page.click('text=Search for hospitals');
+    await this.page.waitForTimeout(2000);
+    const hospitalLink = this.page.locator(locators.HomePage.searchHospitalsFooterLink);
+    await hospitalLink.click();
+    await this.page.waitForLoadState('domcontentloaded');
   }
 }
+ 
+ 
