@@ -30,4 +30,9 @@ export class HospitalListingPage {
     }
     return 'Unknown';
   }
+  async getHospitalLink(card: Locator): Promise<string | null> {
+    const link = await card.locator(locators.HospitalListingPage.hospitalLink).first().getAttribute("href");
+    return link?.startsWith("http") ? link : `https://www.practo.com${link}`;
+  }
+ 
 }
