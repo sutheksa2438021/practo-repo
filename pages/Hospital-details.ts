@@ -68,7 +68,7 @@ export class HospitalDetailPage {
    async titleMatches(name: string): Promise<boolean> {
     const title = await this.page.title();
     return title.toLowerCase().includes(name.toLowerCase());
- 
+   }
   async getHospitalName(card: Locator): Promise<string> {
     const nameLocator = card.locator(locators.HospitalListingPage.hospitalName).first();
     if (await nameLocator.isVisible({ timeout: 3000 })) {
