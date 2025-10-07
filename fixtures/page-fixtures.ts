@@ -6,6 +6,8 @@ import { LabTestPage } from '../pages/Labtests';
 import { CorporateWellnessValidDataPage } from '../pages/cooperatewellness';
 import { CorporateWellnessInvalidDataPage  } from '../pages/invalidwellness';
  
+import { CooperateWellnessInvalidDataPage  } from '../pages/invalidwellness';
+
 export class PageFixture {
   readonly page: Page;
   readonly basePage: BasePage;
@@ -15,13 +17,16 @@ export class PageFixture {
   readonly cooperateWellnessPage: CorporateWellnessValidDataPage;
   readonly invalidWellnessPage: CorporateWellnessInvalidDataPage ;
  
+  readonly invalidWellnessPage: CooperateWellnessInvalidDataPage ;
+
   constructor(page: Page) {
     this.page = page;
     this.basePage = new BasePage(page);
     this.homepage = new Homepage(page);
     this.hospitaldetails = new HospitalDetailPage(page);
     this.labtest = new LabTestPage(page);
-    
+    //this.cooperateWellnessPage = new  CorporateWellnessValidDataPage(page);
+    this.invalidWellnessPage = new CooperateWellnessInvalidDataPage(page);
   }
  
   get base(): Page {
