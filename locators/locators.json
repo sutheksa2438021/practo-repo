@@ -1,8 +1,24 @@
 {
+<<<<<<< HEAD
      "labTests": {
     "modalOverlay": ".ReactModal__Overlay",
     "packageCard": "div.c-package",
     "packageName": "h3.c-package__title-line-two",
     "packagePrice": "span.o-font-size--20.u-marginr--std"
   }  
+=======
+  "HomePage": {
+    "locationInput": "input[placeholder='Search location']",
+    "searchHospitalsFooterLink": "footer >> text=Search for hospitals"
+  },
+  "HospitalListingPage": {
+    "hospitalCard": "div[class*='c-estb-card']",
+    "hospitalName": "h2",
+    "hospitalLink": "a"
+  },
+  "HospitalDetailPage": {
+    "readMoreButton": "text=Read More",
+    "bodyText": "body"
+  }
+>>>>>>> 0e32570287f9939307f91056e3ad15352daf6b2c
 }

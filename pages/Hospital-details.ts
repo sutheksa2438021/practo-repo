@@ -1,21 +1,33 @@
-import { Page } from '@playwright/test';
-
-export class HospitalDetailsPage {
-  constructor(private page: Page) {}
-
-  async applyFilters() {
-    
+import { Page, Locator } from '@playwright/test';
+import locators from '../locators/locators.json';
+ 
+export class HospitalListingPage {
+  readonly page: Page;
+  readonly hospitalCards: Locator;
+ 
+  constructor(page: Page) {
+    this.page = page;
+    this.hospitalCards = page.locator(locators.HospitalListingPage.hospitalCard);
   }
-
-  async getHospitalCards() {
-    
+ 
+  async scrollToLoadHospitals() {
+    await this.page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await this.page.waitForTimeout(3000);
   }
-
-  async getHospitalName(card: any) {
-    
+ 
+  async getHospitalCount(): Promise<number> {
+    return await this.hospitalCards.count();
   }
-
-  async getHospitalRating(card: any) {
-    
+ 
+  async getHospitalCard(index: number): Promise<Locator> {
+    return this.hospitalCards.nth(index);
+  }
+ 
+  async getHospitalName(card: Locator): Promise<string> {
+    const nameLocator = card.locator(locators.HospitalListingPage.hospitalName).first();
+    if (await nameLocator.isVisible({ timeout: 3000 })) {
+      return (await nameLocator.textContent())?.trim() || 'Unknown';
+    }
+    return 'Unknown';
   }
 }

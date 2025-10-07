@@ -1,27 +1,26 @@
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../pages/Homepage';
-import { HospitalDetailsPage } from '../pages/Hospital-details';
-
-test.describe('Hospital Search and Verification', () => {
-  let homePage: HomePage;
-  let hospitalPage: HospitalDetailsPage;
-
-  test.beforeEach(async ({ page }) => {
-    homePage = new HomePage(page);
-    hospitalPage = new HospitalDetailsPage(page);
-
-    await homePage.navigateToHome();
-    await homePage.selectCity('Bangalore');
-    await homePage.clickSearchHospitals();
+import { chromium, test } from '@playwright/test';
+import { Homepage } from '../pages/Homepage';
+import { HospitalListingPage} from '../pages/Hospital-details';
+ 
+test.setTimeout(180000);
+ 
+test('Hospital search and validation on Practo', async () => {
+  const browser = await chromium.launch({
+    headless: false,
+    args: ['--disable-blink-features=AutomationControlled']
   });
-
-  test('Verify hospital pages for 24x7 hospitals with rating > 3.5', async ({ page }) => {
-    await hospitalPage.applyFilters();
-
-    const cards = await hospitalPage.getHospitalCards();
-    const matchingHospitals: { name: string; rating: number; link: any }[] = [];
-
-    
-
-        });
+ 
+  const context = await browser.newContext();
+  const page = await context.newPage();
+ 
+  const homepage = new Homepage(page);
+  await homepage.navigate();
+  await homepage.setLocation('Bangalore');
+  await homepage.clickSearchHospitalsFooter();
+ 
+  const listingPage = new HospitalListingPage(page);
+  await listingPage.scrollToLoadHospitals();
+ 
+  const count = await listingPage.getHospitalCount();
+  console.log("Hospitals with 24x7, Rating > 3.5 and Parking:\n");
 });
