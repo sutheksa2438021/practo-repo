@@ -1,3 +1,8 @@
 {
-       
+     "labTests": {
+    "modalOverlay": ".ReactModal__Overlay",
+    "packageCard": "div.c-package",
+    "packageName": "h3.c-package__title-line-two",
+    "packagePrice": "span.o-font-size--20.u-marginr--std"
+  }  
 }

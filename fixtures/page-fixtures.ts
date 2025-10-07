@@ -21,8 +21,7 @@ export class PageFixture {
     this.homepage = new HomePage(page);
     this.hospitaldetails = new HospitalDetailsPage(page);
     this.labtest = new LabTestPage(page);
-    this.cooperateWellnessPage = new  CorporateWellnessValidDataPage(page);
-    this.invalidWellnessPage = new CorporateWellnessInvalidDataPage(page);
+    
   }
 
   get base(): Page {
