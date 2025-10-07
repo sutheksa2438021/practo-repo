@@ -41,7 +41,7 @@ export class HospitalListingPage {
   }
 }
 
-/*export class HospitalDetailPage {
+export class HospitalDetailPage {
   readonly page: Page;
 
   constructor(page: Page) {
@@ -76,5 +76,5 @@ export class HospitalListingPage {
     }
     return 'Unknown'; 
   }
-}*/
+}
 
