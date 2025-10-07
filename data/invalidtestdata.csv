@@ -1,2 +1,2 @@
-name,organizationName,contactNumber,email,organizationSize,interestedIn
+Name,OrganizationName,ContactNumber,Email,OrganizationSize,InterestedIn
 Test User,Invalid Org,123,invalid-email,501-1000,Referring someone
