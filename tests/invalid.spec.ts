@@ -28,5 +28,16 @@ for (const data of invalidData) {
 
     await wellnessPage.navigateToForm();
     await wellnessPage.fillInvalidFormData(data);
+     const submitButton = await wellnessPage.getSubmitButton();
+
+    // Scroll into view and wait for visibility
+    await submitButton.scrollIntoViewIfNeeded();
+    await submitButton.waitFor({ state: 'attached' });
+
+    await expect(submitButton).toBeDisabled();
+
+    console.log(`Assertion Passed: Submission button is disabled for ${data.Name}`);
+
+    await browser.close();
  })
  };

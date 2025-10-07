@@ -19,4 +19,10 @@ export class CooperateWellnessInvalidDataPage {
     await this.page.locator(locators.orgSizeDropdown).selectOption(data.OrganizationSize);
     await this.page.locator(locators.interestDropdown).selectOption(data.InterestedIn);
   }
+  async getSubmitButton() {
+    const button = this.page.getByRole('button', { name: /schedule|submit|demo|contact/i }).first();
+    await button.scrollIntoViewIfNeeded();
+    await button.waitFor({ state: 'attached' });
+    return button;
+  }
 }
