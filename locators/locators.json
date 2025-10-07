@@ -1,3 +1,15 @@
 {
-       
+  "HomePage": {
+    "locationInput": "input[placeholder='Search location']",
+    "searchHospitalsFooterLink": "footer >> text=Search for hospitals"
+  },
+  "HospitalListingPage": {
+    "hospitalCard": "div[class*='c-estb-card']",
+    "hospitalName": "h2",
+    "hospitalLink": "a"
+  },
+  "HospitalDetailPage": {
+    "readMoreButton": "text=Read More",
+    "bodyText": "body"
+  }
 }

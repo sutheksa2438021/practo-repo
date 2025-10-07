@@ -1,27 +1,71 @@
-import { test, expect } from '@playwright/test';
+import { chromium, test } from '@playwright/test';
 import { HomePage } from '../pages/Homepage';
-import { HospitalDetailsPage } from '../pages/Hospital-details';
+import { HospitalListingPage, HospitalDetailPage } from '../pages/Hospital-details';
 
-test.describe('Hospital Search and Verification', () => {
-  let homePage: HomePage;
-  let hospitalPage: HospitalDetailsPage;
+test.setTimeout(180000);
 
-  test.beforeEach(async ({ page }) => {
-    homePage = new HomePage(page);
-    hospitalPage = new HospitalDetailsPage(page);
-
-    await homePage.navigateToHome();
-    await homePage.selectCity('Bangalore');
-    await homePage.clickSearchHospitals();
+test('Hospital search and validation on Practo', async () => {
+  const browser = await chromium.launch({
+    headless: false,
+    args: ['--disable-blink-features=AutomationControlled']
   });
 
-  test('Verify hospital pages for 24x7 hospitals with rating > 3.5', async ({ page }) => {
-    await hospitalPage.applyFilters();
+  const context = await browser.newContext();
+  const page = await context.newPage();
 
-    const cards = await hospitalPage.getHospitalCards();
-    const matchingHospitals: { name: string; rating: number; link: any }[] = [];
+  const homepage = new HomePage(page);
+  await homepage.navigate();
+  await homepage.setLocation('Bangalore');
+  await homepage.clickSearchHospitalsFooter();
 
-    
+  const listingPage = new HospitalListingPage(page);
+  await listingPage.scrollToLoadHospitals();
 
-        });
+  const count = await listingPage.getHospitalCount();
+  console.log("Hospitals with 24x7, Rating > 3.5 and Parking:\n");
+
+  for (let i = 0; i < count; i++) {
+    const card = await listingPage.getHospitalCard(i);
+    const cardText = await listingPage.getCardText(card);
+
+    console.log(`🔍 Inspecting card ${i + 1}/${count}`);
+
+    const name = await listingPage.getHospitalName(card);
+    const is24x7 = cardText.includes("Open 24x7");
+    const ratingMatch = cardText.match(/(\d\.\d)\s*\(\d+\s*rated\)/);
+    const rating = ratingMatch ? parseFloat(ratingMatch[1]) : 0;
+
+    if (is24x7 && rating > 3.5 && name !== 'Unknown') {
+      const hospitalUrl = await listingPage.getHospitalLink(card);
+      if (!hospitalUrl) continue;
+
+      console.log(`➡️ Visiting: ${name} — Rating: ${rating}`);
+
+      const hospitalPage = await context.newPage();
+      const detailPage = new HospitalDetailPage(hospitalPage);
+
+      try {
+        await detailPage.navigateTo(hospitalUrl);
+        await detailPage.expandReadMore();
+
+        const hasParking = await detailPage.hasParking();
+        const titleMatches = await detailPage.titleMatches(name);
+
+        if (hasParking && titleMatches) {
+          console.log(`✅ ${name} — Rating: ${rating} — Open 24x7 — Parking Available`);
+        } else {
+          console.log(`❌ ${name} — Rating: ${rating} — Conditions not fully met`);
+        }
+      } catch (error) {
+        console.log(`⚠️ Failed to load ${hospitalUrl}: ${error}`);
+      } finally {
+        await hospitalPage.close();
+      }
+    } else {
+      console.log(`⛔ Skipped: ${name} — Rating: ${rating} — 24x7: ${is24x7}`);
+    }
+  }
+
+  await browser.close();
 });
+
