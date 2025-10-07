@@ -1,11 +1,10 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-   "orgSizeDropdown": "#header #organizationSize",
-=======
+
+   
+
   "invalid" :{
     "orgSizeDropdown": "#header #organizationSize",
->>>>>>> abe7a89bc08d642f9f1787fdfa51a410807bf72f
+
   "interestDropdown": "#header #interestedIn"   
   },
      "labTests": {
