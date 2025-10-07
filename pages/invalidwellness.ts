@@ -1,35 +1,39 @@
-import {Page} from '@playwright/test';
-
-export class CorporateWellnessInvalidDataPage {
+import { Page ,expect} from '@playwright/test';
+import locators from '../locators/locators.json';
+ 
+export class CooperateWellnessInvalidDataPage {
   constructor(private page: Page) {}
+ 
+  async navigateToForm() {
+    await this.page.goto('https://www.practo.com/', { waitUntil: 'domcontentloaded' });
+    await this.page.getByText('For Corporates').first().click();
+    await this.page.getByRole('link', { name: 'Health & Wellness Plans' }).click();
+  }
+ 
+  async fillInvalidFormData(data: any) {
+    await this.page.getByRole('textbox', { name: 'Name', exact: true }).fill(data.Name);
+    await this.page.getByRole('textbox', { name: 'Organization Name', exact: true }).fill(data.OrganizationName);
+    await this.page.getByRole('textbox', { name: 'Contact Number', exact: true }).fill(data.ContactNumber);
+    await this.page.getByRole('textbox', { name: 'Official Email ID', exact: true }).fill(data.Email);
+    await this.page.locator(locators.invalid.orgSizeDropdown).selectOption(data.OrganizationSize);
+    await this.page.locator(locators.invalid.interestDropdown).selectOption(data.InterestedIn);
+  }
+ 
+  async getSubmitButton() {
+    const button = this.page.getByRole('button', { name: /schedule|submit|demo|contact/i }).first();
+    await button.scrollIntoViewIfNeeded();
+    await button.waitFor({ state: 'attached' });
+    return button;
+  }
+ 
 
-  async navigateToWellnessPage() {
-    await this.page.goto('https://www.practo.com/corporate-wellness');
+  async clickFAQLink() {
+    await this.page.locator('#header').getByText('FAQs').click();
   }
 
-  async fillInvalidForm() {
-    await this.page.fill('#name', '');
-    await this.page.fill('#organizationName', '');
-    await this.page.fill('#contactNumber', '123');
-    await this.page.fill('#email', 'invalid-email');
-    await this.page.selectOption('#organizationSize', { label: 'Select' });
-    await this.page.selectOption('#interestedIn', { label: 'Select' });
-  }
-
-  async isSubmitButtonEnabled(): Promise<boolean> {
-    return await this.page.locator('button:has-text("Schedule a demo")').isEnabled();
-  }
-
-  async clickFAQ() {
-    await this.page.click('text=FAQ');
-  }
-
-  async scrollToFAQSection() {
-    const faqSection = this.page.locator('section:has-text("Frequently Asked Questions")'); // Adjust selector if needed
-    await faqSection.scrollIntoViewIfNeeded();
-  }
-
-  async getErrorMessage() {
-    return await this.page.locator('.alert-message').textContent(); // Update selector if needed
+  async assertFAQVisible() {
+    const faqHeading = this.page.getByRole('heading', { name: 'FAQs' });
+    await faqHeading.scrollIntoViewIfNeeded();
+    await expect(faqHeading).toBeVisible();
   }
 }

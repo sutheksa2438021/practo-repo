@@ -1,3 +1,12 @@
 {
-       
+ 
+ "invalid":{
+  "orgSizeDropdown": "#header #organizationSize",
+  "interestDropdown": "#header #interestedIn"
+}, 
+  "faq": {
+    "faqLink": "#header >> text=FAQs",
+    "faqHeading": "role=heading[name='FAQs']"
+  }
 }
+       
