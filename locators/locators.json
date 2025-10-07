@@ -1,16 +1,20 @@
 {
 <<<<<<< HEAD
-   "orgSizeDropdown": "#header #organizationSize",
-  "interestDropdown": "#header #interestedIn"   
-=======
 <<<<<<< HEAD
+   "orgSizeDropdown": "#header #organizationSize",
+=======
+  "invalid" :{
+    "orgSizeDropdown": "#header #organizationSize",
+>>>>>>> abe7a89bc08d642f9f1787fdfa51a410807bf72f
+  "interestDropdown": "#header #interestedIn"   
+  },
      "labTests": {
     "modalOverlay": ".ReactModal__Overlay",
     "packageCard": "div.c-package",
     "packageName": "h3.c-package__title-line-two",
     "packagePrice": "span.o-font-size--20.u-marginr--std"
   }  
-=======
+,
   "HomePage": {
     "locationInput": "input[placeholder='Search location']",
     "searchHospitalsFooterLink": "footer >> text=Search for hospitals"
@@ -24,6 +28,4 @@
     "readMoreButton": "text=Read More",
     "bodyText": "body"
   }
->>>>>>> 0e32570287f9939307f91056e3ad15352daf6b2c
->>>>>>> 1bcba1e2092c5713410ef5ce5fd587a94da4ed5d
 }
