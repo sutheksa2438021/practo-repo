@@ -15,6 +15,6 @@ test('Extract health packages and prices', async ({ }) => {
   const labt=new LabTestPage(page);
   await labt.navigate();
   await labt.handleModal();
-  //await labt.scrollToLoadPackages();
-  //await labt.extractPackages();
+  await labt.scrollToLoadPackages();
+  await labt.extractPackages();
 });

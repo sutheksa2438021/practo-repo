@@ -23,7 +23,38 @@ export class LabTestPage {
       }
     } catch {}
   }
+  async scrollToLoadPackages() {
+    await this.page.evaluate(() => window.scrollBy(0, 2000));
+    await this.page.waitForTimeout(3000);
+  }
+
+  async extractPackages(limit: number = 3) {
+    const count = await this.packageCards.count();
+    //const results = [];
+    const results: string[] = [];
+
+    if (count === 0) {
+      console.log('No health packages found.');
+    } else {
+      for (let i = 0; i < Math.min(limit, count); i++) {
+        const card = this.packageCards.nth(i);
+        const name = await card.locator('h3.c-package__title-line-two').textContent();
+        const price = await card.locator('span.o-font-size--20.u-marginr--std').textContent();
+
+        if (name && price) {
+          const result = `${i + 1}. ${name.trim()} - ${price.trim()}`;
+          console.log(result);
+          results.push(result);
+        }
+      }
+    }
+
+    return results;
+  }
+}
+
 
   
-  }
+
+  
 
