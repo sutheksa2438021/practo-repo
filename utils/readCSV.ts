@@ -13,5 +13,23 @@ export function readCSVData(filePath: string) {
         trim: true,
     });
    
+}
+
+
  
+export function readCSV(fileName: string) {
+  const filePath = path.resolve(__dirname, '../data', fileName);
+  const fileContent = fs.readFileSync(filePath);
+  return parse(fileContent, {
+    columns: true,
+    skip_empty_lines: true,
+  });
+}
+export function readCSVdata(fileName: string) {
+  const filePath = path.resolve(__dirname, '../data', fileName);
+  const fileContent = fs.readFileSync(filePath);
+  return parse(fileContent, {
+    columns: true,
+    skip_empty_lines: true,
+  });
 }

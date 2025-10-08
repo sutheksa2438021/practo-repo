@@ -1,9 +1,9 @@
 import { chromium, expect, test as base } from '@playwright/test';
 import { CorporateWellnessValidDataPage } from '../pages/cooperatewellness';
-import { readCSV } from '../utils/readCSV';
+import {  readCSVdata } from '../utils/readCSV';
 
 type TestData = { phone_number: string };
-const idata = readCSV('validtestdata.csv') as TestData[];
+const idata = readCSVdata('validtestdata.csv') as TestData[];
 
 base('verify successful app download link SMS delivery', async () => {
   // Launch Chromium with automation detection disabled

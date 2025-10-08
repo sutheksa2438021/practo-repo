@@ -1,6 +1,6 @@
 import { chromium, test, expect } from '@playwright/test';
 import { CooperateWellnessInvalidDataPage } from '../pages/invalidwellness';
-import { readCSVData } from '../utils/readCSV';
+import {readCSV} from '../utils/readCSV';
  
 type WellnessFormData = {
   Name: string;
@@ -11,7 +11,7 @@ type WellnessFormData = {
   InterestedIn: string;
 };
  
-const invalidData = readCSVData('invalidtestdata.csv') as WellnessFormData[];
+const invalidData = readCSV('invalidtestdata.csv') as WellnessFormData[];
  
 for (const data of invalidData) {
   test(`Form should not submit with invalid data: ${data.Name}`, async () => {
