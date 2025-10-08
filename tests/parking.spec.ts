@@ -27,7 +27,7 @@ test('Hospital search and validation on Practo', async () => {
     const card = await listingPage.getHospitalCard(i);
     const cardText = await listingPage.getCardText(card);
 
-    console.log(`🔍 Inspecting card ${i + 1}/${count}`);
+    console.log(` Inspecting card ${i + 1}/${count}`);
 
     const name = await listingPage.getHospitalName(card);
     const is24x7 = cardText.includes("Open 24x7");
@@ -38,7 +38,7 @@ test('Hospital search and validation on Practo', async () => {
       const hospitalUrl = await listingPage.getHospitalLink(card);
       if (!hospitalUrl) continue;
 
-      console.log(`➡️ Visiting: ${name} — Rating: ${rating}`);
+      console.log(` Visiting: ${name} — Rating: ${rating}`);
 
       const hospitalPage = await context.newPage();
       const detailPage = new HospitalDetailPage(hospitalPage);
@@ -51,17 +51,17 @@ test('Hospital search and validation on Practo', async () => {
         const titleMatches = await detailPage.titleMatches(name);
 
         if (hasParking && titleMatches) {
-          console.log(`✅ ${name} — Rating: ${rating} — Open 24x7 — Parking Available`);
+          console.log(` ${name} — Rating: ${rating} — Open 24x7 — Parking Available`);
         } else {
-          console.log(`❌ ${name} — Rating: ${rating} — Conditions not fully met`);
+          console.log(` ${name} — Rating: ${rating} — Conditions not fully met`);
         }
       } catch (error) {
-        console.log(`⚠️ Failed to load ${hospitalUrl}: ${error}`);
+        console.log(` Failed to load ${hospitalUrl}: ${error}`);
       } finally {
         await hospitalPage.close();
       }
     } else {
-      console.log(`⛔ Skipped: ${name} — Rating: ${rating} — 24x7: ${is24x7}`);
+      console.log(` Skipped: ${name} — Rating: ${rating} — 24x7: ${is24x7}`);
     }
   }
 
