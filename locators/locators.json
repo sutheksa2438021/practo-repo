@@ -1,6 +1,10 @@
 {
 
-   
+    "valid":{
+  "phoneInput": "input[placeholder='Enter phone number']",
+  "sendSmsButton": "button:has-text('Send SMS')",
+  "successMessage": "text=App Download Link Sent"
+},
 
   "invalid" :{
     "orgSizeDropdown": "#header #organizationSize",
