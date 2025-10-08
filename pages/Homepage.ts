@@ -15,6 +15,7 @@ export class Homepage {
   async setLocation(city: string) {
     const locationInput = this.page.locator(locators.HomePage.locationInput);
     await locationInput.click();
+    await locationInput.clear();
     await locationInput.fill(city);
     await this.page.keyboard.press('Enter');
     await this.page.waitForTimeout(2000);
