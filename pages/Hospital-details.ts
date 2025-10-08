@@ -74,6 +74,7 @@ export class HospitalDetailPage {
     if (await nameLocator.isVisible({ timeout: 3000 })) {
       return (await nameLocator.textContent())?.trim() || 'Unknown';
     }
-    return 'Unknown';
+    return 'Unknown'; 
   }
 }
+
