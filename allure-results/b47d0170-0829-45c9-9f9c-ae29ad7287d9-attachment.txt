@@ -1,0 +1,3 @@
+Assertion Passed: Submission button is disabled for Test User
+Clicked the 'FAQs' link.
+Assertion Passed: The 'FAQs' section is visible after clicking the link.

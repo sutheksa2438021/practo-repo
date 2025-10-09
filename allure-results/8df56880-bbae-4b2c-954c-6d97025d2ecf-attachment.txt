@@ -1,0 +1,30 @@
+Hospitals with 24x7, Rating > 3.5 and Parking:
+
+ Inspecting card 1/10
+ Visiting: Manipal Hospital Varthur Road (formerly Columbia Asia Hospital) — Rating: 4
+ Manipal Hospital Varthur Road (formerly Columbia Asia Hospital) — Rating: 4 — Open 24x7 — Parking Available
+ Inspecting card 2/10
+ Visiting: Manipal Hospitals — Rating: 4.5
+ Manipal Hospitals — Rating: 4.5 — Open 24x7 — Parking Available
+ Inspecting card 3/10
+ Visiting: Koshys Hospital — Rating: 4
+ Koshys Hospital — Rating: 4 — Open 24x7 — Parking Available
+ Inspecting card 4/10
+ Visiting: Motherhood Hospital — Rating: 4.5
+ Motherhood Hospital — Rating: 4.5 — Open 24x7 — Parking Available
+ Inspecting card 5/10
+ Visiting: Apollo Spectra Hospitals — Rating: 4
+ Apollo Spectra Hospitals — Rating: 4 — Open 24x7 — Parking Available
+ Inspecting card 6/10
+ Visiting: Motherhood Hospital — Rating: 4.5
+ Motherhood Hospital — Rating: 4.5 — Open 24x7 — Parking Available
+ Inspecting card 7/10
+ Visiting: Trilife Hospital — Rating: 4
+ Trilife Hospital — Rating: 4 — Open 24x7 — Parking Available
+ Inspecting card 8/10
+ Visiting: Apollo Cradle & Children’s Hospital — Rating: 4.5
+ Apollo Cradle & Children’s Hospital — Rating: 4.5 — Open 24x7 — Parking Available
+ Inspecting card 9/10
+ Skipped: Manipal Hospital — Rating: 3.5 — 24x7: true
+ Inspecting card 10/10
+ Skipped: Manipal Hospital — Rating: 4.5 — 24x7: false

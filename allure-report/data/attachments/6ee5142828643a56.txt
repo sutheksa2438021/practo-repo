@@ -1,0 +1,30 @@
+Hospitals with 24x7, Rating > 3.5 and Parking:
+
+ Inspecting card 1/10
+ Visiting: Dr. Mehta's Hospitals — Rating: 4.5
+ Dr. Mehta's Hospitals — Rating: 4.5 — Open 24x7 — Parking Available
+ Inspecting card 2/10
+ Visiting: MIOT International Hospital — Rating: 4.5
+ MIOT International Hospital — Rating: 4.5 — Open 24x7 — Parking Available
+ Inspecting card 3/10
+ Visiting: Apollo Spectra Hospital — Rating: 4
+ Apollo Spectra Hospital — Rating: 4 — Open 24x7 — Parking Available
+ Inspecting card 4/10
+ Visiting: Raadha Rajendran Hospital — Rating: 4.5
+ Raadha Rajendran Hospital — Rating: 4.5 — Open 24x7 — Parking Available
+ Inspecting card 5/10
+ Skipped: Apollo Speciality Hospital — Rating: 4.5 — 24x7: false
+ Inspecting card 6/10
+ Skipped: Parampara Fertility & Gynaec Centre — Rating: 5 — 24x7: false
+ Inspecting card 7/10
+ Visiting: Annai Arul Hospital — Rating: 5
+ Annai Arul Hospital — Rating: 5 — Open 24x7 — Parking Available
+ Inspecting card 8/10
+ Visiting: Apollo Cradle — Rating: 4
+ Apollo Cradle — Rating: 4 — Open 24x7 — Parking Available
+ Inspecting card 9/10
+ Visiting: Cloudnine Hospital — Rating: 5
+ Cloudnine Hospital — Rating: 5 — Open 24x7 — Parking Available
+ Inspecting card 10/10
+ Visiting: Motherhood Hospital — Rating: 4.5
+ Motherhood Hospital — Rating: 4.5 — Open 24x7 — Parking Available
